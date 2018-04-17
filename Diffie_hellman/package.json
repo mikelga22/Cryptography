@@ -1,0 +1,20 @@
+{
+  "name": "diffie_hellman",
+  "version": "1.0.0",
+  "description": "Simple application using Diffie-Hellman keys and message encryption between a server and a client, built in Nodejs.",
+  "main": "diffie-hellman.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "big-integer": "^1.6.28",
+    "body-parser": "^1.18.2",
+    "cookie": "^0.3.1",
+    "express": "^4.16.3",
+    "morgan": "^1.9.0",
+    "parser": "^0.1.4",
+    "request": "^2.85.0"
+  }
+}
