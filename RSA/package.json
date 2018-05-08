@@ -1,0 +1,15 @@
+{
+  "name": "rsa",
+  "version": "1.0.0",
+  "description": "This is a simple RSA client-server application built in nodejs.",
+  "main": "rsa.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bignum": "^0.12.5",
+    "bignum-browserify": "0.0.2"
+  }
+}

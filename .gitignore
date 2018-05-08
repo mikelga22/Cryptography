@@ -1,5 +1,9 @@
-Server/node_modules/
-Client/node_modules/
+Diffie_hellman/Server/node_modules/
+Diffie_hellman/Client/node_modules/
+
+RSA/Server/node_modules/
+RSA/Client/node_modules/
+RSA/Client/bundle.js
 
 # Logs
 logs

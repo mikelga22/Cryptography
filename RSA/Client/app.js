@@ -70,6 +70,7 @@ $(document).ready(function () {
             rTemp = bigInt.randBetween(0,n);
         }
         r = bignum(rTemp.toString(16),16)
+
         //calculate inverse of r
         const rInv = r.invertm(pubKey.n);
         //convert hte message to numeric format

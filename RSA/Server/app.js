@@ -5,6 +5,7 @@ const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
 const logger = require('morgan');
+const rsa = require('../rsa')
 
 const app = express();
 app.use(logger('dev'));
@@ -17,44 +18,37 @@ app.use(function (req, res, next) {
     next();
 });
 
-//generate p and q
-const p = bignum.prime(1024, true);
-const q = bignum.prime(1024, true);
-
-//calculate n and phi(n)
-const n = p.mul(q);
-const phi = (p.sub(1)).mul(q.sub(1));
-
-//define e and public key
-const e = bignum(65537);
-const kPub = { "e": e.toString(16), "n": n.toString(16) };
-
-//define d and private key
-const d = e.invertm(phi);
-const kPrv = { "d": d, "n": n };
+const keys = rsa.getRSAKeys(128);
 
 app.get('/publicKey', function (req, res) {
     //const key = { "e": kPub.e.toString(16), "n": kPub.n.toString(16) };
-    res.status(200).send(kPub);
+    res.status(200).send(keys.publicKey);
+});
+
+app.get('/test', function (req, res) {
+    //const key = { "e": kPub.e.toString(16), "n": kPub.n.toString(16) };
+    res.status(200).send({"key": rsa.getRSAKey(128)});
 });
 
 app.post('/sign', function (req, res) {
     //get mmessage from body
-    const c = bignum(req.body.message, 16);
+    //const c = bignum(req.body.message, 16);
     //sign message
-    const signed = c.powm(d, n);
+    //const signed = c.powm(d, n);
+    const signed = keys.publicKey.encrypt(req.body.message);
 
     res.status(200).send(signed.toString(16));
 });
 
 app.post('/message', function (req, res) {
     //get mmessage from body
-    const c = bignum(req.body.message, 16);
+    /*const c = bignum(req.body.message, 16);
     //decrypt message in numeric format
     const deNum = c.powm(d, n);
     //convert message decrypted to string
     const de = deNum.toBuffer().toString();
-    //print decrypted message
+    //print decrypted message*/
+    const de = keys.privateKey.decrypt(req.body.message);
     console.log("Message received: ", de);
 
     res.status(200).send("Message received: "+ de);
