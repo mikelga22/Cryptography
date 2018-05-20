@@ -1,0 +1,14 @@
+{
+  "name": "secret_sharing",
+  "version": "1.0.0",
+  "description": "",
+  "main": "secret-sharing.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bignum": "^0.12.5"
+  }
+}

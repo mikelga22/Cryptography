@@ -1,0 +1,1 @@
+Module to implement Shamir's secret sharing
