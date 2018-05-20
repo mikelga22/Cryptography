@@ -41,7 +41,6 @@ const RSAPrivateKey = class RSAPrivateKey {
     //mssg is a string
     sign(mssg) {
         //convert string to numeric
-        console.log(mssg)
         const buff = Buffer.from(mssg);
         const num = bignum.fromBuffer(buff);
         //ecrypt numeric message
@@ -72,7 +71,6 @@ const RSAPublicKey = class RSAPublicKey {
     //mssg is a string
     encrypt(mssg) {
         //convert string to numeric
-        console.log(mssg)
         const buff = Buffer.from(mssg);
         const num = bignum.fromBuffer(buff);
         //ecrypt numeric message
