@@ -39,7 +39,7 @@ const RSAPrivateKey = class RSAPrivateKey {
     }
 
     //mssg is a string
-    encrypt(mssg) {
+    sign(mssg) {
         //convert string to numeric
         console.log(mssg)
         const buff = Buffer.from(mssg);
@@ -82,7 +82,7 @@ const RSAPublicKey = class RSAPublicKey {
     }
 
     //mssg is a bignum in base 16
-    decrypt(mssg) {
+    verify(mssg) {
         //get mmessage from body
         const c = bignum(mssg, 16);
         //decrypt message in numeric format
