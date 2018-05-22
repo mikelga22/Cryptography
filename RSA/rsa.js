@@ -100,5 +100,6 @@ module.exports = {
     privateKey: RSAPrivateKey,
     privateKey: privateKey,
     publicKey: RSAPublicKey,
-    publicKey: publicKey
+    publicKey: publicKey,
+    hexToUTF8:hexToUTF8
 }

@@ -35,7 +35,7 @@ app.post('/sign', function (req, res) {
     //const c = bignum(req.body.message, 16);
     //sign message
     //const signed = c.powm(d, n);
-    const signed = keys.publicKey.encrypt(req.body.message);
+    const signed = keys.privateKey.sign(req.body.message);
 
     res.status(200).send(signed.toString(16));
 });
@@ -48,10 +48,10 @@ app.post('/message', function (req, res) {
     //convert message decrypted to string
     const de = deNum.toBuffer().toString();
     //print decrypted message*/
+    console.log(req.body.message)
     const de = keys.privateKey.decrypt(req.body.message);
-    console.log("Message received: ", de);
 
-    res.status(200).send("Message received: "+ de);
+    res.status(200).send("Message received: "+ rsa.hexToUTF8(de));
 });
 
 /*const m = "a";
