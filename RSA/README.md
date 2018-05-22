@@ -40,7 +40,7 @@ A *prublicKey* object has the structure:
 
 **_privateKey_.sign(mssg);**
 
-Signs *mssg* with private key, which is a string. Returns a string in base 16.
+Signs *mssg* with private key, which is a hex string. Returns a string in base 16.
 
 **_privateKey_.decrypt(mssg);**
 
@@ -50,7 +50,7 @@ Decrypts *mssg*, previously encrypted with public key. Is a string in base 16. R
 
 **_pyblicKey_.encrypt(mssg);**
 
-Encrypts *mssg* with public key, which is a string. Returns a string in base 16.
+Encrypts *mssg* with public key, which is a hex string. Returns a string in base 16.
 
 **_publicKey_.verify(mssg);**
 
@@ -81,3 +81,25 @@ Converts an object with the form
 }
 
 into a *rsa publiceKey* object.
+
+-----------------------------------
+
+**rsa.hexToUTF8(hexStr);**
+
+Converts a hex String to UTF8
+
+-----------------------------------
+
+**Example**
+
+```
+const msg = "Message";
+
+const keys = rsa.getRSAKeys(512);
+const hexMsg = Buffer.from(msg).toString('hex')
+const c = keys.privateKey.sign(hexMsg);
+
+const d = keys.publicKey.verify(c);
+const initialMsg= rsa.hexToUTF8(d);
+console.log(initialMsg) //out = Message
+```
