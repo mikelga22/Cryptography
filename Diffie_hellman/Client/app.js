@@ -23,14 +23,15 @@ request({
             const r = JSON.parse(body)
             //console.log(response)
 
-            const n = bigInt(r.n);
-            const g = bigInt(r.g);
-            const A = bigInt(r.A);
+            const p = bigInt(r.p,16);
+            const g = bigInt(r.g, 16);
+            const A = bigInt(r.A, 16);
 
-            const parameters = dh.getBobParameters(n, g, A);
+            const dhParams = new dh.DH(p, g);
 
             //generate key
-            const dhKey = dh.getDHKey(A, parameters.b, parameters.n);
+            const dhKey = dhParams.sharedKey(A);
+            console.log(dhKey.toString(16))
 
             const key = Buffer.from(dhKey.toString(16), 'hex').slice(0, 32);
 
@@ -43,9 +44,9 @@ request({
             //console.log(encrypted);
 
             let message = {};
-            message.message = encrypted;
-            message.B = parameters.B;
+            message.B=dhParams.A;
             message.iv = iv;
+            message.message=encrypted;
 
             request({
                 url: 'http://localhost:3000/message',
